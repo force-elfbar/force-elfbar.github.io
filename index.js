@@ -194,7 +194,7 @@ async function sendData() {
         return;
     }
 
-    formData.append('text', 'Имя покупателя: ' + formData.get('client_name') + '\n\nTelegram покупателя: ' + telegram + '\n\nИмя селлера: ' + formData.get('seller_name') + '\nnTelegram селлера: ' + formData.get('seller_telegram') + '\n\nКоличество тяг: ' + formData.get('countTyag') + '\n\nВкус: ' + formData.get('taste') + '\n\nЦена: ' + formData.get('price') + '\n\nДоставка: ' + formData.get('delivery') + '\n\nДополнительная информация: ' + formData.get('more_info') + '\n\nВыполнение заказа(❌ - заказ не выполнен; ✅ - заказ выполнен): ❌');
+    formData.append('text', 'Имя покупателя: ' + formData.get('client_name') + '\nTelegram покупателя: ' + telegram + '\n\nИмя селлера: ' + formData.get('seller_name') + '\nTelegram селлера: ' + formData.get('seller_telegram') + '\n\nКоличество тяг: ' + formData.get('countTyag') + '\n\nВкус: ' + formData.get('taste') + '\n\nЦена: ' + formData.get('price') + '\n\nДоставка: ' + formData.get('delivery') + '\n\nДополнительная информация: ' + formData.get('more_info') + '\n\nВыполнение заказа(❌ - заказ не выполнен; ✅ - заказ выполнен): ❌');
 
     let response = await fetch('https://api.telegram.org/bot6288829007:AAHRQkrWMHaY9YXuWtzs0302frTJPNMSxsA/sendMessage', {
         method: 'POST',
