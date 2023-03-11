@@ -15,7 +15,7 @@ function loadBase(value) {
         googleSheetUrl = 'https://sheets.googleapis.com/v4/spreadsheets/1YTGyA4p3NhHrNGhIW5kmRNpVykz7jVeGKmTkny1Pz8k/values/Наличие?key=AIzaSyCcn3IQgineUMeiniA16lOLGZTGSu0SE3g';
     }
     else if (value == "Деснянский") {
-        googleSheetUrl = 'https://sheets.googleapis.com/v4/spreadsheets/1YTGyA4p3NhHrNGhIW5kmRNpVykz7jVeGKmTkny1Pz8k/values/Наличие?key=AIzaSyCcn3IQgineUMeiniA16lOLGZTGSu0SE3g';
+        googleSheetUrl = 'https://sheets.googleapis.com/v4/spreadsheets/1w1aZECSt84dCnzYWx91KiyNV66CtYBNrQNujx5I8b8Y/values/Наличие?key=AIzaSyCcn3IQgineUMeiniA16lOLGZTGSu0SE3g';
     }
     else if (value == "Подольський") {
         googleSheetUrl = 'https://sheets.googleapis.com/v4/spreadsheets/1iqDyAe1VE69o05Jis19WBrl0BlUUs-sIAIa5EP705no/values/Наличие?key=AIzaSyCcn3IQgineUMeiniA16lOLGZTGSu0SE3g';
