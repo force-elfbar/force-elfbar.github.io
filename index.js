@@ -7,260 +7,63 @@ let minPrice = 0;
 let countvNalichae = 0;
 
 function loadBase(value) {
+    let googleSheetUrl = '';
     if (value == "Оболонский") {
-        // Количество тяг, вкус, мин.прайс, общее количество, в наличии
-        document.querySelector('.countTyagvNalichae').innerHTML = null;
-        document.querySelector('.countTyagvNalichae').style.color = 'blue';
-        countsTyag = [];
-        document.querySelector('.tastevNalichae').innerHTML = null;
-        document.querySelector('.minPrice').innerHTML = null;
-        document.querySelector('.countvNalichae').innerHTML = null;
-        fetch(`https://sheets.googleapis.com/v4/spreadsheets/1KoKkt-Bl7urToOROsAPktkqYxw8qlJOkTm9196aw6Pc/values/Наличие?key=AIzaSyCcn3IQgineUMeiniA16lOLGZTGSu0SE3g`)
-            .then(responce => { return responce.json() })
-            .then(data => {
-                dataFromGoogleSheet = data.values;
-                data.values.forEach(item => {
-                    if (item[0] == "Количество тяг" || countsTyag.includes(item[0])) {
-                        return;
-                    }
-                    countsTyag.push(item[0]);
-                });
-                document.querySelector('.countTyagvNalichae').insertAdjacentHTML('beforeend', countsTyag);
-            })
-            .catch(error => {
-                if (error.message.search('forEach') != -1) {
-                    document.querySelector('.countTyagvNalichae').insertAdjacentHTML('beforeend', 'Нет в наличии');
-                    document.querySelector('.countTyagvNalichae').style.color = 'red';
-                }
-            });
+        googleSheetUrl = 'https://sheets.googleapis.com/v4/spreadsheets/1KoKkt-Bl7urToOROsAPktkqYxw8qlJOkTm9196aw6Pc/values/Наличие?key=AIzaSyCcn3IQgineUMeiniA16lOLGZTGSu0SE3g';
     }
     else if (value == "Шевченковский") {
-        document.querySelector('.countTyagvNalichae').innerHTML = null;
-        document.querySelector('.tastevNalichae').innerHTML = null;
-        document.querySelector('.minPrice').innerHTML = null;
-        document.querySelector('.countvNalichae').innerHTML = null;
-        fetch(`https://sheets.googleapis.com/v4/spreadsheets/1YTGyA4p3NhHrNGhIW5kmRNpVykz7jVeGKmTkny1Pz8k/values/Наличие?key=AIzaSyCcn3IQgineUMeiniA16lOLGZTGSu0SE3g`)
-            .then(responce => { return responce.json() })
-            .then(data => {
-                dataFromGoogleSheet = data.values;
-                console.log(dataFromGoogleSheet);
-                let countsTyag = [];
-                data.values.forEach(item => {
-                    if (item[0] == "Количество тяг" || countsTyag.includes(item[0])) {
-                        return;
-                    }
-                    countsTyag.push(item[0]);
-                    document.querySelector('.countTyagvNalichae').insertAdjacentHTML('beforeend', item[0]);
-                })
-            })
-            .catch(error => {
-                if (error.message.search('forEach') != -1) {
-                    document.querySelector('.countTyagvNalichae').insertAdjacentHTML('beforeend', 'Нет в наличии');
-                    document.querySelector('.countTyagvNalichae').style.color = 'red';
-                }
-            });
+        googleSheetUrl = 'https://sheets.googleapis.com/v4/spreadsheets/1YTGyA4p3NhHrNGhIW5kmRNpVykz7jVeGKmTkny1Pz8k/values/Наличие?key=AIzaSyCcn3IQgineUMeiniA16lOLGZTGSu0SE3g';
     }
     else if (value == "Деснянский") {
-        document.querySelector('.countTyagvNalichae').innerHTML = null;
-        document.querySelector('.tastevNalichae').innerHTML = null;
-        document.querySelector('.minPrice').innerHTML = null;
-        document.querySelector('.countvNalichae').innerHTML = null;
-        fetch(`https://sheets.googleapis.com/v4/spreadsheets/1YTGyA4p3NhHrNGhIW5kmRNpVykz7jVeGKmTkny1Pz8k/values/Наличие?key=AIzaSyCcn3IQgineUMeiniA16lOLGZTGSu0SE3g`)
-            .then(responce => { return responce.json() })
-            .then(data => {
-                dataFromGoogleSheet = data.values;
-                console.log(dataFromGoogleSheet);
-                let countsTyag = [];
-                data.values.forEach(item => {
-                    if (item[0] == "Количество тяг" || countsTyag.includes(item[0])) {
-                        return;
-                    }
-                    countsTyag.push(item[0]);
-                    document.querySelector('.countTyagvNalichae').insertAdjacentHTML('beforeend', item[0]);
-                })
-            })
-            .catch(error => {
-                if (error.message.search('forEach') != -1) {
-                    document.querySelector('.countTyagvNalichae').insertAdjacentHTML('beforeend', 'Нет в наличии');
-                    document.querySelector('.countTyagvNalichae').style.color = 'red';
-                }
-            });
+        googleSheetUrl = 'https://sheets.googleapis.com/v4/spreadsheets/1YTGyA4p3NhHrNGhIW5kmRNpVykz7jVeGKmTkny1Pz8k/values/Наличие?key=AIzaSyCcn3IQgineUMeiniA16lOLGZTGSu0SE3g';
     }
-    // else if (value == "Подольський") {
-    //     document.querySelector('.countTyag').innerHTML = null;
-    //     document.querySelector('.taste').innerHTML = null;
-    //     document.querySelector('.minPrice').innerHTML = null;
-    //     document.querySelector('.vNalichae').innerHTML = null;
-    //     fetch(`https://sheets.googleapis.com/v4/spreadsheets/1iqDyAe1VE69o05Jis19WBrl0BlUUs-sIAIa5EP705no/values/Наличие?key=AIzaSyCcn3IQgineUMeiniA16lOLGZTGSu0SE3g`)
-    //         .then(responce => { return responce.json() })
-    //         .then(data => {
-    //             dataFromGoogleSheet = data.values;
-    //             let countsTyag = [];
-    //             data.values.forEach(item => {
-    //                 if (item[0] == "Количество тяг" || countsTyag.includes(item[0])) {
-    //                     return;
-    //                 }
-    //                 countsTyag.push(item[0]);
-    //                 const markup = `<option value="${item[0]}">${item[0]}</option>`;
-    //                 document.querySelector('.countTyag').insertAdjacentHTML('beforeend', markup);
-    //             })
-    //         })
-    //         .catch(error => {
-    //             if (error.message.search('forEach') != -1) {
-    //                 document.querySelector('.vNalichae').insertAdjacentHTML('beforeend', '0');
-    //             }
-    //         });
-    // }
-    // else if (value == "Соломенский") {
-    //     document.querySelector('.countTyag').innerHTML = null;
-    //     document.querySelector('.taste').innerHTML = null;
-    //     document.querySelector('.minPrice').innerHTML = null;
-    //     document.querySelector('.vNalichae').innerHTML = null;
-    //     fetch(`https://sheets.googleapis.com/v4/spreadsheets/1SBixEDKVWbd2YFl1rNe4wAfgormkoTLvz_GwbaSdvqQ/values/Наличие?key=AIzaSyCcn3IQgineUMeiniA16lOLGZTGSu0SE3g`)
-    //         .then(responce => { return responce.json() })
-    //         .then(data => {
-    //             dataFromGoogleSheet = data.values;
-    //             let countsTyag = [];
-    //             data.values.forEach(item => {
-    //                 if (item[0] == "Количество тяг" || countsTyag.includes(item[0])) {
-    //                     return;
-    //                 }
-    //                 countsTyag.push(item[0]);
-    //                 const markup = `<option value="${item[0]}">${item[0]}</option>`;
-    //                 document.querySelector('.countTyag').insertAdjacentHTML('beforeend', markup);
-    //             })
-    //         })
-    //         .catch(error => {
-    //             if (error.message.search('forEach') != -1) {
-    //                 document.querySelector('.vNalichae').insertAdjacentHTML('beforeend', '0');
-    //             }
-    //         });
-    // }
-    // else if (value == "Печерский") {
-    //     document.querySelector('.countTyag').innerHTML = null;
-    //     document.querySelector('.taste').innerHTML = null;
-    //     document.querySelector('.minPrice').innerHTML = null;
-    //     document.querySelector('.vNalichae').innerHTML = null;
-    //     fetch(`https://sheets.googleapis.com/v4/spreadsheets/1LaBGKxuz2ueIGhEzJjDZH8YZGB7kt1S0k1PKaOF9G1A/values/Наличие?key=AIzaSyCcn3IQgineUMeiniA16lOLGZTGSu0SE3g`)
-    //         .then(responce => { return responce.json() })
-    //         .then(data => {
-    //             dataFromGoogleSheet = data.values;
-    //             let countsTyag = [];
-    //             data.values.forEach(item => {
-    //                 if (item[0] == "Количество тяг" || countsTyag.includes(item[0])) {
-    //                     return;
-    //                 }
-    //                 countsTyag.push(item[0]);
-    //                 const markup = `<option value="${item[0]}">${item[0]}</option>`;
-    //                 document.querySelector('.countTyag').insertAdjacentHTML('beforeend', markup);
-    //             })
-    //         })
-    //         .catch(error => {
-    //             if (error.message.search('forEach') != -1) {
-    //                 document.querySelector('.vNalichae').insertAdjacentHTML('beforeend', '0');
-    //             }
-    //         });
-    // }
-    // else if (value == "Голосовеевский") {
-    //     document.querySelector('.countTyag').innerHTML = null;
-    //     document.querySelector('.taste').innerHTML = null;
-    //     document.querySelector('.minPrice').innerHTML = null;
-    //     document.querySelector('.vNalichae').innerHTML = null;
-    //     fetch(`https://sheets.googleapis.com/v4/spreadsheets/1bzVJIUIyoHQj4AIkMHPlRTntgmX9A4BW2tS5pK45ys4/values/Наличие?key=AIzaSyCcn3IQgineUMeiniA16lOLGZTGSu0SE3g`)
-    //         .then(responce => { return responce.json() })
-    //         .then(data => {
-    //             dataFromGoogleSheet = data.values;
-    //             let countsTyag = [];
-    //             data.values.forEach(item => {
-    //                 if (item[0] == "Количество тяг" || countsTyag.includes(item[0])) {
-    //                     return;
-    //                 }
-    //                 countsTyag.push(item[0]);
-    //                 const markup = `<option value="${item[0]}">${item[0]}</option>`;
-    //                 document.querySelector('.countTyag').insertAdjacentHTML('beforeend', markup);
-    //             })
-    //         })
-    //         .catch(error => {
-    //             if (error.message.search('forEach') != -1) {
-    //                 document.querySelector('.vNalichae').insertAdjacentHTML('beforeend', '0');
-    //             }
-    //         });
-    // }
-    // else if (value == "Святошинский") {
-    //     document.querySelector('.countTyag').innerHTML = null;
-    //     document.querySelector('.taste').innerHTML = null;
-    //     document.querySelector('.minPrice').innerHTML = null;
-    //     document.querySelector('.vNalichae').innerHTML = null;
-    //     fetch(`https://sheets.googleapis.com/v4/spreadsheets/1IxeLfU0Wd4rullq7VVOm_aY3TpKzNphzITa3q_9hf14/values/Наличие?key=AIzaSyCcn3IQgineUMeiniA16lOLGZTGSu0SE3g`)
-    //         .then(responce => { return responce.json() })
-    //         .then(data => {
-    //             dataFromGoogleSheet = data.values;
-    //             let countsTyag = [];
-    //             data.values.forEach(item => {
-    //                 if (item[0] == "Количество тяг" || countsTyag.includes(item[0])) {
-    //                     return;
-    //                 }
-    //                 countsTyag.push(item[0]);
-    //                 const markup = `<option value="${item[0]}">${item[0]}</option>`;
-    //                 document.querySelector('.countTyag').insertAdjacentHTML('beforeend', markup);
-    //             })
-    //         })
-    //         .catch(error => {
-    //             if (error.message.search('forEach') != -1) {
-    //                 document.querySelector('.vNalichae').insertAdjacentHTML('beforeend', '0');
-    //             }
-    //         });
-    // }
-    // else if (value == "Днипровський") {
-    //     document.querySelector('.countTyag').innerHTML = null;
-    //     document.querySelector('.taste').innerHTML = null;
-    //     document.querySelector('.minPrice').innerHTML = null;
-    //     document.querySelector('.vNalichae').innerHTML = null;
-    //     fetch(`https://sheets.googleapis.com/v4/spreadsheets/1DDsDOl_GxWbvBjUcWskJlEuoKL1RtvSdv9XD2txSrhI/values/Наличие?key=AIzaSyCcn3IQgineUMeiniA16lOLGZTGSu0SE3g`)
-    //         .then(responce => { return responce.json() })
-    //         .then(data => {
-    //             dataFromGoogleSheet = data.values;
-    //             let countsTyag = [];
-    //             data.values.forEach(item => {
-    //                 if (item[0] == "Количество тяг" || countsTyag.includes(item[0])) {
-    //                     return;
-    //                 }
-    //                 countsTyag.push(item[0]);
-    //                 const markup = `<option value="${item[0]}">${item[0]}</option>`;
-    //                 document.querySelector('.countTyag').insertAdjacentHTML('beforeend', markup);
-    //             })
-    //         })
-    //         .catch(error => {
-    //             if (error.message.search('forEach') != -1) {
-    //                 document.querySelector('.vNalichae').insertAdjacentHTML('beforeend', '0');
-    //             }
-    //         });
-    // }
-    // else if (value == "Дарницкий") {
-    //     document.querySelector('.countTyag').innerHTML = null;
-    //     document.querySelector('.taste').innerHTML = null;
-    //     document.querySelector('.minPrice').innerHTML = null;
-    //     document.querySelector('.vNalichae').innerHTML = null;
-    //     fetch(`https://sheets.googleapis.com/v4/spreadsheets/15__2GujVkA7rlNckXoKRHVDtLTKCX27q-t0v10J8jCY/values/Наличие?key=AIzaSyCcn3IQgineUMeiniA16lOLGZTGSu0SE3g`)
-    //         .then(responce => { return responce.json() })
-    //         .then(data => {
-    //             dataFromGoogleSheet = data.values;
-    //             let countsTyag = [];
-    //             data.values.forEach(item => {
-    //                 if (item[0] == "Количество тяг" || countsTyag.includes(item[0])) {
-    //                     return;
-    //                 }
-    //                 countsTyag.push(item[0]);
-    //                 const markup = `<option value="${item[0]}">${item[0]}</option>`;
-    //                 document.querySelector('.countTyag').insertAdjacentHTML('beforeend', markup);
-    //             })
-    //         })
-    //         .catch(error => {
-    //             if (error.message.search('forEach') != -1) {
-    //                 document.querySelector('.vNalichae').insertAdjacentHTML('beforeend', '0');
-    //             }
-    //         });
-    // }
+    else if (value == "Подольський") {
+        googleSheetUrl = 'https://sheets.googleapis.com/v4/spreadsheets/1iqDyAe1VE69o05Jis19WBrl0BlUUs-sIAIa5EP705no/values/Наличие?key=AIzaSyCcn3IQgineUMeiniA16lOLGZTGSu0SE3g';
+    }
+    else if (value == "Соломенский") {
+        googleSheetUrl = 'https://sheets.googleapis.com/v4/spreadsheets/1SBixEDKVWbd2YFl1rNe4wAfgormkoTLvz_GwbaSdvqQ/values/Наличие?key=AIzaSyCcn3IQgineUMeiniA16lOLGZTGSu0SE3g';
+    }
+    else if (value == "Печерский") {
+        googleSheetUrl = 'https://sheets.googleapis.com/v4/spreadsheets/1LaBGKxuz2ueIGhEzJjDZH8YZGB7kt1S0k1PKaOF9G1A/values/Наличие?key=AIzaSyCcn3IQgineUMeiniA16lOLGZTGSu0SE3g';
+    }
+    else if (value == "Голосовеевский") {
+        googleSheetUrl = 'https://sheets.googleapis.com/v4/spreadsheets/1bzVJIUIyoHQj4AIkMHPlRTntgmX9A4BW2tS5pK45ys4/values/Наличие?key=AIzaSyCcn3IQgineUMeiniA16lOLGZTGSu0SE3g';
+    }
+    else if (value == "Святошинский") {
+        googleSheetUrl = 'https://sheets.googleapis.com/v4/spreadsheets/1IxeLfU0Wd4rullq7VVOm_aY3TpKzNphzITa3q_9hf14/values/Наличие?key=AIzaSyCcn3IQgineUMeiniA16lOLGZTGSu0SE3g';
+    }
+    else if (value == "Днипровський") {
+        googleSheetUrl = 'https://sheets.googleapis.com/v4/spreadsheets/1DDsDOl_GxWbvBjUcWskJlEuoKL1RtvSdv9XD2txSrhI/values/Наличие?key=AIzaSyCcn3IQgineUMeiniA16lOLGZTGSu0SE3g';
+    }
+    else if (value == "Дарницкий") {
+        googleSheetUrl = 'https://sheets.googleapis.com/v4/spreadsheets/15__2GujVkA7rlNckXoKRHVDtLTKCX27q-t0v10J8jCY/values/Наличие?key=AIzaSyCcn3IQgineUMeiniA16lOLGZTGSu0SE3g';
+    }
+
+    // Количество тяг, вкус, мин.прайс, общее количество, в наличии
+    document.querySelector('.countTyagvNalichae').innerHTML = null;
+    document.querySelector('.countTyagvNalichae').style.color = 'blue';
+    countsTyag = [];
+    document.querySelector('.tastevNalichae').innerHTML = null;
+    document.querySelector('.minPrice').innerHTML = null;
+    document.querySelector('.countvNalichae').innerHTML = null;
+    fetch(`${googleSheetUrl}`)
+        .then(responce => { return responce.json() })
+        .then(data => {
+            dataFromGoogleSheet = data.values;
+            data.values.forEach(item => {
+                if (item[0] == "Количество тяг" || countsTyag.includes(item[0])) {
+                    return;
+                }
+                countsTyag.push(item[0]);
+            });
+            document.querySelector('.countTyagvNalichae').insertAdjacentHTML('beforeend', countsTyag);
+        })
+        .catch(error => {
+            if (error.message.search('forEach') != -1) {
+                document.querySelector('.countTyagvNalichae').insertAdjacentHTML('beforeend', 'Нет в наличии');
+                document.querySelector('.countTyagvNalichae').style.color = 'red';
+            }
+        });
 }
 
 function loadTaste(value) {
