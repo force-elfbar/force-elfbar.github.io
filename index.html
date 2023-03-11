@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" type="text/css" href="index.css">
+	<link rel="stylesheet" type="text/css" href="null_styles.css">
+
+	<script type="text/javascript" src="index.js"></script>
+
+	<title>Force Elfbar</title>
+</head>
+<body>
+	<header>
+		<h1>Force Elfbar</h1>
+		<img src="img/logo2.png">
+	</header>
+
+	<div class="information">
+		<h2>Информация</h2>
+		<ol>
+			<li>
+				<span>Доставка</span>: <br>
+				<ul>
+					<li>Самовывоз - в каждом районе база выбирает точку, где будет встречаться с клиентами и отдавать товар</li>
+					<li>Наша доставка - база доставит в любую точку по району (+50грн)</li>
+				</ul>
+			</li>
+			<li>
+				<span>!!! ОБЯЗАТЕЛЬНО !!!</span><br>
+				<p>Если такие разделы как Район(база), Количество тяг, Вкус, Доставка уже выбраны - перевыберите их (выберите что-то другое и обратно выберите ваш вариант). Если вы не перевыберите - оно не отправит вашу заявку !!!</p>
+			</li>
+		</ol>
+	</div>
+
+	<form id="form" action="thanks.html" onsubmit="sendData()">
+		<h2>Форма продажи</h2>
+
+		<p>
+			<h3>Имя покупателя</h3>
+			<input type="text" name="client_name" placeholder="Введите имя покупателя" value="">
+		</p>
+
+		<p>
+			<h3>Telegram покупателя<span>*</span></h3>
+			<input required type="text" name="client_telegram" placeholder="Введите telegram покупателя" value="">
+		</p>
+
+		<p>
+			<h3>Имя селлера<span>*</span></h3>
+			<input required type="text" name="seller_name" placeholder="Введите имя продавца" value="">
+		</p>
+
+		<p>
+			<h3>Telegram селлера<span>*</span></h3>
+			<input required type="text" name="seller_telegram" placeholder="Введите telegram покупателя" value="">
+		</p>
+
+		<p>
+			<h3>Район (база)<span>*</span></h3>
+			<select required name="base" onchange="loadBase(value)">
+				<option value="Подольський">Подольський</option>
+				<option value="Оболонский">Оболонский</option>
+				<option value="Шевченковский">Шевченковский</option>
+				<option value="Деснянский">Деснянский</option>
+				<option value="Соломенский">Соломенский</option>
+				<option value="Печерский">Печерский</option>
+				<option value="Голосеевский">Голосеевский</option>
+				<option value="Святошинский">Святошинский</option>
+				<option value="Днипровський">Днипровський</option>
+				<option value="Дарницкий">Дарницкий</option>
+			</select>
+		</p>
+
+		<p>
+			<h3>Количество тяг<span>*</span></h3>
+			<select required class="countTyag" name="countTyag" onchange="loadTaste(value)">
+				<option value="800">800</option>
+				<option value="1500">1500</option>
+				<option value="2000">2000</option>
+				<option value="3000">3000</option>
+				<option value="4000">4000</option>
+				<option value="5000">5000</option>
+			</select>
+			<p class="countTyagvNalichaeText">В наличии: <span class="countTyagvNalichae"></span></p>
+		</p>
+
+		<p>
+			<h3>Вкус<span>*</span></h3>
+			<select required class="taste" name="taste" onchange="loadMinPriceAndCountvNalichae(value)">
+			<!-- <select required class="taste" name="taste"> -->
+				<option value="🍍Pineapple-ice🧊(Classic)">🍍Pineapple-ice🧊(Classic)</option>
+				<option value="🍉Watermelon-lemon🍋(Classic)">🍉Watermelon-lemon🍋(Classic)</option>
+				<option value="🍉Watermelon🍉(Classic)">🍉Watermelon🍉(Classic)</option>
+				<option value="🍌Banana-ice🧊(Classic)">🍌Banana-ice🧊(Classic)</option>
+				<option value="🍓Strawberry ice cream🍦(Classic)">🍓Strawberry ice cream🍦(Classic)</option>
+				<option value="🥭Mango🥭(Classic)">🥭Mango🥭(Classic)</option>
+				<option value="🥭Mango🍑peach🍉watermelon(Classic)">🥭Mango🍑peach🍉watermelon(Classic)</option>
+				<option value="🥝Kiwi-passion-fruit-guava🥑(Lux)">🥝Kiwi-passion-fruit-guava🥑(Lux)</option>
+				<option value="🍓Strawberry-watermelon🍉(Lux)">🍓Strawberry-watermelon🍉(Lux)</option>
+				<option value="🍓Strawberry energy🐲(Lux)">🍓Strawberry energy🐲(Lux)</option>
+				<option value="🍇Grape energy🐲(Lux)">🍇Grape energy🐲(Lux)</option>
+				<option value="🍏Sour apple🍏(Lux)">🍏Sour apple🍏(Lux)</option>
+				<option value="🍇Grape🍇(Lux)">🍇Grape🍇(Lux)</option>
+				<option value="🍓Strawberry-grape🍇(Lux)">🍓Strawberry-grape🍇(Lux)</option>
+				<option value="☔️Blue razz lemonade🍋(Lux)">☔️Blue razz lemonade🍋(Lux)</option>
+				<option value="💗Pink lemonade🍋(Lux)">💗Pink lemonade🍋(Lux)</option>
+				<option value="🥭Mango🍑peach🍉watermelon(Lux)">🥭Mango🍑peach🍉watermelon(Lux)</option>
+				<option value="🍍Pineapple🍑Peach🥭mango(Lux)">🍍Pineapple🍑Peach🥭mango(Lux)</option>
+				<option value="🍌Banana milk🥛(Lux)">🍌Banana milk🥛(Lux)</option>
+				<option value="🍓Strawberry🍌banana(Lux)">🍓Strawberry🍌banana(Lux)</option>
+				<option value="☕️Coffe tobacco🍂(Lux)">☕️Coffe tobacco🍂(Lux)</option>
+				<option value="🍑Peach🥭mango🥝guava(Lux)">🍑Peach🥭mango🥝guava(Lux)</option>
+			</select>
+			<p class="tastevNalichaeText">В наличии:</p>
+			<div class="tastevNalichae">
+				
+			</div>
+		</p>
+
+		<p>
+			<h3>Ваша цена<span>*</span></h3>
+			<input required type="number" name="price" placeholder="Введите цену" value="">
+			<p class="minPriceText">Минимальная цена: <span class="minPrice"></span></p>
+			<p class="countvNalichaeText">В наличии: <span class="countvNalichae"></span> шт.</p>
+		</p>
+
+		<p>
+			<h3>Доставка<span>*</span></h3>
+			<select required name="delivery">
+				<option value="Наша доставка">Наша доставка</option>
+				<option value="Самовывоз">Самовывоз</option>
+			</select>
+		</p>
+
+		<p>
+			<h3>Дополнительная информация</h3>
+			<textarea name="more_info" placeholder="Введите дополнительную информацию"></textarea>
+		</p>
+
+		<p><button type="submit">Отправить</button></p>
+
+		<p><button type="reset">Очистить форму</button></p>
+
+	</form>
+
+	<footer>
+		<img src="img/logo2.png"><span>Force Elfbar</span>
+	</footer>
+</body>
+</html>
