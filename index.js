@@ -137,25 +137,25 @@ function loadMinPriceAndCountvNalichae(value) {
 
 async function sendData() {
     let formData = new FormData(form);
-    let telegram;
+    let client_telegram;
     if (formData.get('client_telegram').search('https://t.me/') != -1) {
-        telegram = '@' + formData.get('client_telegram').substring(13);
+        client_telegram = '@' + formData.get('client_telegram').substring(13);
     }
     else if (formData.get('client_telegram')[0] == '@') {
-        telegram = formData.get('client_telegram');
+        client_telegram = formData.get('client_telegram');
     }
     else {
-        telegram = '@' + formData.get('client_telegram');
+        client_telegram = '@' + formData.get('client_telegram');
     }
 
     if (formData.get('seller_telegram').search('https://t.me/') != -1) {
-        telegram = '@' + formData.get('seller_telegram').substring(13);
+        seller_telegram = '@' + formData.get('seller_telegram').substring(13);
     }
     else if (formData.get('seller_telegram')[0] == '@') {
-        telegram = formData.get('seller_telegram');
+        seller_telegram = formData.get('seller_telegram');
     }
     else {
-        telegram = '@' + formData.get('seller_telegram');
+        seller_telegram = '@' + formData.get('seller_telegram');
     }
 
     if (formData.get('base') == 'Оболонский') {
@@ -194,7 +194,7 @@ async function sendData() {
         return;
     }
 
-    formData.append('text', 'Имя покупателя: ' + formData.get('client_name') + '\nTelegram покупателя: ' + telegram + '\n\nИмя селлера: ' + formData.get('seller_name') + '\nTelegram селлера: ' + formData.get('seller_telegram') + '\n\nКоличество тяг: ' + formData.get('countTyag') + '\n\nВкус: ' + formData.get('taste') + '\n\nЦена: ' + formData.get('price') + '\n\nДоставка: ' + formData.get('delivery') + '\n\nДополнительная информация: ' + formData.get('more_info') + '\n\nВыполнение заказа(❌ - заказ не выполнен; ✅ - заказ выполнен): ❌');
+    formData.append('text', 'Имя покупателя: ' + formData.get('client_name') + '\nTelegram покупателя: ' + client_telegram + '\n\nИмя селлера: ' + formData.get('seller_name') + '\nTelegram селлера: ' + seller_telegram + '\n\nКоличество тяг: ' + formData.get('countTyag') + '\n\nВкус: ' + formData.get('taste') + '\n\nЦена: ' + formData.get('price') + '\n\nДоставка: ' + formData.get('delivery') + '\n\nДополнительная информация: ' + formData.get('more_info') + '\n\nВыполнение заказа(❌ - заказ не выполнен; ✅ - заказ выполнен): ❌');
 
     let response = await fetch('https://api.telegram.org/bot6057878715:AAFXRyhDHaN8lEdBhQ8h_O7HNFKwSR5SlRU/sendMessage', {
         method: 'POST',
