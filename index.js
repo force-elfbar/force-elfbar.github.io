@@ -138,6 +138,7 @@ function loadMinPriceAndCountvNalichae(value) {
 async function sendData() {
     let formData = new FormData(form);
     let client_telegram;
+    let seller_telegram;
     if (formData.get('client_telegram').search('https://t.me/') != -1) {
         client_telegram = '@' + formData.get('client_telegram').substring(13);
     }
